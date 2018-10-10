@@ -1,19 +1,40 @@
 package coroutines_doc
 
-import kotlinx.coroutines.experimental.GlobalScope
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.experimental.*
 
-fun main(args: Array<String>) {
+//fun main(args: Array<String>) = runBlocking<Unit> {
+//
+//    //    println("$this")
+//    val job = GlobalScope.launch {
+//        //        println("$this")
+//        delay(3000)
+//        print("World!")
+//    }
+//
+//    print("Hello, ")
+////    job.join()
+//}
 
-    GlobalScope.launch {
-        delay(1000)
-        print("World!")
-    }
+//fun main(args: Array<String>) = runBlocking<Unit> {
+//
+//    this.launch {
+//        delay(3000)
+//        print("World!")
+//    }
+//
+//    print("Hello, ")
+//}
+
+fun main(args: Array<String>) = runBlocking {
+
+    launch { doWorld() }
 
     print("Hello, ")
-    runBlocking {
-        delay(2000)
-    }
+}
+
+suspend fun doWorld() {
+
+    delay(2000)
+    print("World!")
+
 }
