@@ -1,11 +1,11 @@
-package syncronous
+package asyncronous_coroutines
 
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 
-fun main(args: Array<String>) =
+fun main_(args: Array<String>) =
 
         runBlocking<Unit> {
 
@@ -13,12 +13,12 @@ fun main(args: Array<String>) =
 
             val jobs: List<Job> = List(SIZE) {
                 launch {
-                    delay(1000L)
+                    delay(TIMEOUT)
                     print("*")
                 }
             }
             jobs.forEach { it.join() }
 
             println()
-            println("time nano: ${System.currentTimeMillis() - start}")
+            println("time millis: ${System.currentTimeMillis() - start}")
         }
