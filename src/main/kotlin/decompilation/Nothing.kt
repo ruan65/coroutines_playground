@@ -14,7 +14,7 @@ fun anythingICanDoForYou(): Nothing {
     return Any() as Nothing
 }
 
-fun main(args: Array<String>) {
-    println("Anything I can do for you?")
-    println("${anythingICanDoForYou()}")
-}
+//fun main(args: Array<String>) {
+//    println("Anything I can do for you?")
+//    println("${anythingICanDoForYou()}")
+//}
