@@ -1,11 +1,14 @@
 package rx
 
 import com.badoo.mvicore.binder.Binder
+import com.badoo.mvicore.binder.using
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.Observer
 import io.reactivex.functions.Consumer
 import io.reactivex.subjects.Subject
+
+
 
 fun main(args: Array<String>) {
 
@@ -15,11 +18,14 @@ fun main(args: Array<String>) {
             "third"
     )
 
-    val input: Consumer<String> = Consumer { println(it) }
+    val input: Consumer<Int> = Consumer { println(it) }
 
+    val transformer: (String) -> Int = {
+        it.length
+    }
     val binder = Binder()
 
-    binder.bind(output to input)
+    binder.bind(output to input using transformer)
 
 }
 
