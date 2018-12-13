@@ -9,7 +9,6 @@ import MviBadoo.DocumentationExample.Feature2.Wish.*
 import MviBadoo.DocumentationExample.Feature2.Effect.*
 import io.reactivex.schedulers.Schedulers
 
-
 class Feature2 : ActorReducerFeature<Wish, Effect, State, Nothing>(
         initialState = State(),
         actor = ActorImpl(),
@@ -33,7 +32,7 @@ class Feature2 : ActorReducerFeature<Wish, Effect, State, Nothing>(
 
     class ActorImpl : Actor<State, Wish, Effect> {
 
-        private val service: Observable<String> = TODO()
+        private val service: Observable<String> = Observable.just("Hello feature!!!!!!!!!!!!!!!!!!!!!!!!")
 
         override fun invoke(state: State, wish: Wish): Observable<out Effect> = when (wish) {
             is LoadNewData -> {
@@ -54,4 +53,14 @@ class Feature2 : ActorReducerFeature<Wish, Effect, State, Nothing>(
             is FinishedWithError -> state.copy(isLoading = false)
         }
     }
+}
+
+fun main(args: Array<String>) {
+
+    val feature2 = Feature2()
+
+    val news = feature2.news
+
+
+    println("news: ${news}")
 }
