@@ -7,14 +7,13 @@ import io.reactivex.Observable
 import MviBadoo.DocumentationExample.Feature2.*
 import MviBadoo.DocumentationExample.Feature2.Wish.*
 import MviBadoo.DocumentationExample.Feature2.Effect.*
-import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 
 
 class Feature2 : ActorReducerFeature<Wish, Effect, State, Nothing>(
         initialState = State(),
         actor = ActorImpl(),
-        reducer =
+        reducer = ReducerImpl()
 ) {
 
     data class State(
@@ -46,6 +45,13 @@ class Feature2 : ActorReducerFeature<Wish, Effect, State, Nothing>(
             }
             else -> Observable.empty()
         }
+    }
 
+    class ReducerImpl : Reducer<State, Effect> {
+        override fun invoke(state: State, effect: Effect): State = when(effect) {
+            is StartedLoading -> state.copy(isLoading = true)
+            is FinishedWithSuccess -> state.copy(isLoading = false, payload = effect.payload)
+            is FinishedWithError -> state.copy(isLoading = false)
+        }
     }
 }
