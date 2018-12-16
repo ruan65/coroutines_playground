@@ -1,8 +1,8 @@
-package MviBadoo
+package MviBadoo.DocumentationExample
 
 import com.badoo.mvicore.feature.ReducerFeature
-import MviBadoo.Feature1.*
-import MviBadoo.Feature1.Wish.*
+import MviBadoo.DocumentationExample.Feature1.*
+import MviBadoo.DocumentationExample.Feature1.Wish.*
 import com.badoo.mvicore.element.Reducer
 
 class Feature1 : ReducerFeature<Wish, State, Nothing>(
